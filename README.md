@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/innowatio/kinesis-router.svg?branch=master)](https://travis-ci.org/innowatio/kinesis-router)
+[![Coverage Status](https://coveralls.io/repos/innowatio/kinesis-router/badge.svg?branch=master&service=github)](https://coveralls.io/github/innowatio/kinesis-router?branch=master)
+[![Dependency Status](https://david-dm.org/innowatio/kinesis-router.svg)](https://david-dm.org/innowatio/kinesis-router)
+[![devDependency Status](https://david-dm.org/innowatio/kinesis-router/dev-status.svg)](https://david-dm.org/innowatio/kinesis-router#info=devDependencies)
+
 # kinesis-router
 
 Kinesis event router for lambda functions
