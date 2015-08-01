@@ -4,11 +4,21 @@ import {partial} from "ramda";
 var getApplicationEvent = function (kinesisEvent) {
     return BPromise.try(() => {
         // Only consider the first record
-        var data = new Buffer(
-            kinesisEvent.Records[0].kinesis.data,
-            "base64"
-        ).toString("ascii");
-        return JSON.parse(data);
+        var base64Event = kinesisEvent.Records[0].kinesis.data;
+        if (process.env.DEBUG) {
+            console.log([
+                "base64Event:",
+                base64Event
+            ].join("\n"));
+        }
+        var stringifiedEvent = new Buffer(base64Event, "base64").toString();
+        if (process.env.DEBUG) {
+            console.log([
+                "stringifiedEvent:",
+                stringifiedEvent
+            ].join("\n"));
+        }
+        return JSON.parse(stringifiedEvent);
     });
 };
 
