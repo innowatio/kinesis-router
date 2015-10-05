@@ -1,5 +1,5 @@
 import BPromise from "bluebird";
-import {partial} from "ramda";
+import {is, partial} from "ramda";
 
 var getApplicationEvent = function (kinesisEvent) {
     return BPromise.try(() => {
@@ -36,7 +36,13 @@ export default function getRouter () {
         return getApplicationEvent(kinesisEvent)
             .then(partial(routeEvent, router))
             .then(context.succeed)
-            .catch(context.fail);
+            .catch(error => {
+                if (is(Error, error)) {
+                    console.log(erorr.message);
+                    console.log(error.stack);
+                }
+                context.fail(error);
+            });
     };
 
     router.routes = {};
