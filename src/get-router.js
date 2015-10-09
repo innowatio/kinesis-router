@@ -38,7 +38,7 @@ export default function getRouter () {
             .then(context.succeed)
             .catch(error => {
                 if (is(Error, error)) {
-                    console.log(erorr.message);
+                    console.log(error.message);
                     console.log(error.stack);
                 }
                 context.fail(error);
