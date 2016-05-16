@@ -1,40 +1,34 @@
 import BPromise from "bluebird";
 import {is, partial} from "ramda";
 
-var getApplicationEvent = function (kinesisEvent) {
+function getApplicationEvent (kinesisEvent) {
     return BPromise.try(() => {
         // Only consider the first record
         var base64Event = kinesisEvent.Records[0].kinesis.data;
         if (process.env.DEBUG) {
-            console.log([
-                "base64Event:",
-                base64Event
-            ].join("\n"));
+            console.log(`base64Event: \n ${base64Event}`);
         }
         var stringifiedEvent = new Buffer(base64Event, "base64").toString();
         if (process.env.DEBUG) {
-            console.log([
-                "stringifiedEvent:",
-                stringifiedEvent
-            ].join("\n"));
+            console.log(`stringifiedEvent: \n ${stringifiedEvent}`);
         }
         return JSON.parse(stringifiedEvent);
     });
-};
+}
 
-var routeEvent = function (router, applicationEvent) {
+function routeEvent (router, applicationEvent) {
     // Route based on the application event type
-    var handler = router.routes[applicationEvent.type];
+    const handler = router.routes[applicationEvent.type];
     if (handler) {
         return handler(applicationEvent);
     }
-};
+}
 
 export default function getRouter () {
 
-    var router = function (kinesisEvent, context) {
+    function router (kinesisEvent, context) {
         return getApplicationEvent(kinesisEvent)
-            .then(partial(routeEvent, router))
+            .then(partial(routeEvent, [router]))
             .then(context.succeed)
             .catch(error => {
                 if (is(Error, error)) {
@@ -43,7 +37,7 @@ export default function getRouter () {
                 }
                 context.fail(error);
             });
-    };
+    }
 
     router.routes = {};
 

@@ -7,7 +7,7 @@ import sinonChai from "sinon-chai";
 chai.use(chaiAsPromised);
 chai.use(sinonChai);
 
-import getRouter from "get-router";
+import getRouter, {__RewireAPI__ as getRouterRewireApi} from "get-router";
 
 describe("`getRouter`", function () {
 
@@ -42,7 +42,7 @@ describe("`router`", function () {
 
 describe("`getApplicationEvent`", function () {
 
-    var getApplicationEvent = getRouter.__get__("getApplicationEvent");
+    var getApplicationEvent = getRouterRewireApi.__get__("getApplicationEvent");
 
     it("returns a promise", function () {
         var ret = getApplicationEvent();
@@ -74,7 +74,7 @@ describe("`getApplicationEvent`", function () {
 
 describe("`routeEvent`", function () {
 
-    var routeEvent = getRouter.__get__("routeEvent");
+    var routeEvent = getRouterRewireApi.__get__("routeEvent");
 
     it("calls the appropriate handler passing it the event", function () {
         var handler = sinon.spy();
