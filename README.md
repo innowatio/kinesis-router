@@ -1,5 +1,6 @@
 [![npm version](https://badge.fury.io/js/kinesis-router.svg)](https://badge.fury.io/js/kinesis-router)
 [![Build Status](https://travis-ci.org/lk-architecture/kinesis-router.svg?branch=master)](https://travis-ci.org/lk-architecture/kinesis-router)
+[![codecov](https://codecov.io/gh/lk-architecture/kinesis-router/coverage.svg?branch=master)](https://codecov.io/gh/lk-architecture/kinesis-router)
 [![Dependency Status](https://david-dm.org/lk-architecture/kinesis-router.svg)](https://david-dm.org/lk-architecture/kinesis-router)
 [![devDependency Status](https://david-dm.org/lk-architecture/kinesis-router/dev-status.svg)](https://david-dm.org/lk-architecture/kinesis-router#info=devDependencies)
 
