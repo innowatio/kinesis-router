@@ -5,7 +5,7 @@
   "main": "lib/get-router.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/innowation/kinesis-router.git"
+    "url": "https://github.com/lk-architecture/kinesis-router.git"
   },
   "dependencies": {
     "babel-polyfill": "^6.9.0",
