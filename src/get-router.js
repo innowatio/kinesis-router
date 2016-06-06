@@ -1,5 +1,5 @@
 import "babel-polyfill";
-import {map} from "bluebird";
+import {mapSeries} from "bluebird";
 import {is, partial} from "ramda";
 
 import log from "./services/logger";
@@ -18,7 +18,7 @@ export default function getRouter () {
     async function router (kinesisEvent, context) {
         try {
             const events = getEvents(kinesisEvent);
-            await map(events, partial(routeEvent, [router]));
+            await mapSeries(events, partial(routeEvent, [router]));
             context.succeed();
         } catch (error) {
             if (is(Error, error)) {
