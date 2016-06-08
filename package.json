@@ -1,6 +1,6 @@
 {
   "name": "kinesis-router",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Kinesis event router for lambda functions",
   "main": "lib/get-router.js",
   "repository": {
